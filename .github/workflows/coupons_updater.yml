@@ -1,0 +1,50 @@
+name: COUPONS UPDATER
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+    
+env:
+  # Enter your github email here!
+  GitHubMail: "88939380+adarsh-goel@users.noreply.github.com"
+  #Enter your username here!
+  GitHubName: "adarsh-goel"
+
+jobs:
+  Udemy:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+
+      - name: Set Git Configs & Secrets
+        run: |
+          git config --global user.email ${GitHubMail}
+          git config --global user.name ${GitHubName}
+          git config --global credential.helper store
+          echo "https://${GitHubName}:${{ github.token }}@github.com" > ~/.git-credentials
+      - name: Setup Py3
+        uses: actions/setup-python@v2.2.2
+        with:
+          python-version: '3.9.12'
+      - name: Gather repo
+        run: |
+          git clone "https://github.com/${GITHUB_REPOSITORY}" udemy || exit 1
+      - name: Install deps
+        run: |
+          cd udemy
+          pip3 install wheel
+          pip3 install -r requirements.txt
+      - name: Build wheels
+        timeout-minutes: 330
+        continue-on-error: true
+        run: |
+          cd udemy
+          python3 app.py
+      - name: Push To Repo
+        run: |
+          cd udemy
+          git add .
+          git commit -m "[AUTOMATED] Updated Website With Fresh Coupons"
+          git push -q "https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}" -f  HEAD:main || exit 1
