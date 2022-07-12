@@ -37,7 +37,8 @@ async def updater():
 				coup += f"{lin}<br>"
 				count+=1
 		logger.info(f"--------------successfully-collected---{count} coupons----------")
-		html_code = f"""<!DOCTYPE html><html lang="en"><head>
+		html_code = f"""<!DOCTYPE html><html lang="en">
+<head>
 <meta charset="UTF-8">
 <link rel="apple-touch-icon" sizes="180x180" href="https://www.udemy.com/staticx/udemy/images/v7/apple-touch-icon.png" />
 <link rel="icon" type="image/png" sizes="32x32" href="https://www.udemy.com/staticx/udemy/images/v8/favicon-32x32.png" />
