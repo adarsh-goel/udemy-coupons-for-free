@@ -59,7 +59,7 @@ async def updater():
 <footer>
 <center>
 <p>Coded & Managed by: <a href ="https://github.com/adarsh-goel/" target=_blank > Adarsh Goel</a></p>
-<p><a href="https://github.com/adarsh-goel/fresh-udemy-coupons" target=_blank >Give a star to the project🌟</a></p>
+<p><a href="https://github.com/adarsh-goel/udemy-coupons-for-free" target=_blank >Give a star to the project🌟</a></p>
 </center>
 </footer>
 </html>"""
