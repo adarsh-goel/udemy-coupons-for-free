@@ -47,4 +47,4 @@ jobs:
           cd udemy
           git add .
           git commit -m "[AUTOMATED] Updated Website With Fresh Coupons"
-          git push -q "https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}" -f  HEAD:main || exit 1
+          git push -q "https://${{secrets.GH_TOK}}@github.com/${GITHUB_REPOSITORY}" -f  HEAD:main || exit 1
